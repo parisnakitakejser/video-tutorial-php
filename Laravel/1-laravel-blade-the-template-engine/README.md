@@ -4,10 +4,10 @@
 - docker run --rm -v ${PWD}:/app composer install
 - docker-compose build --no-cache
 - docker-compose up -d
-- docker-compose exec cc_app php artisan key:generate
-- docker-compose exec cc_app php artisan config:cache
-- docker-compose exec cc_app php artisan migrate
+- docker-compose exec app php artisan key:generate
+- docker-compose exec app php artisan config:cache
+- docker-compose exec app php artisan migrate
 
 ## Create new user with tinker
-- docker-compose exec cc_app php artisan tinker
+- docker-compose exec app php artisan tinker
 - DB::table('users')->insert(['name'=>'Test','email'=>'test@example.com','password'=>Hash::make('123456')])
