@@ -18,15 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             GroupsSeeder::class,
             UnitsSeeder::class,
+            UserSeeder::class,
+            TagsSeeder::class,
+            RecipesSeeder::class,
+            IngredientsSeeder::class,
         ]);
-
-        if (App::environment('testing')) {
-            $this->call([
-                UserSeeder::class,
-                TagsSeeder::class,
-                RecipesSeeder::class,
-                IngredientsSeeder::class,
-            ]);
-        }
     }
 }
