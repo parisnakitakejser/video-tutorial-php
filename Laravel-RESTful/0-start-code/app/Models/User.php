@@ -11,6 +11,18 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    function recipes() {
+        return $this->hasMany('App\Models\Recipes');
+    }
+
+    function ingredients() {
+        return $this->hasMany('App\Models\Ingredients');
+    }
+
+    function tags() {
+        return $this->hasMany('App\Models\Tags');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

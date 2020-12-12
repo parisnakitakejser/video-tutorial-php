@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Recipes;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            GroupsSeeder::class,
+            UnitsSeeder::class,
+        ]);
+
+        if (App::environment('testing')) {
+            $this->call([
+                UserSeeder::class,
+                TagsSeeder::class,
+                RecipesSeeder::class,
+                IngredientsSeeder::class,
+            ]);
+        }
     }
 }
