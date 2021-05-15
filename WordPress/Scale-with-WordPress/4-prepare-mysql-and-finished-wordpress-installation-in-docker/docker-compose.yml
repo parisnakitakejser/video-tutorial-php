@@ -1,0 +1,29 @@
+version: "3.9"
+
+services: 
+    # NGINX & PHP Server
+    php-fpm:
+        build:
+            context: .
+        env_file: 
+            - ./.env-development
+        ports: 
+            - "8381:8080"
+        volumes: 
+            - wp-www:/var/www
+    
+    # MySQL
+    mysql:
+        image: mysql:5.7
+        environment: 
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_DATABASE: wordpress
+
+        ports:
+            - "8307:3306"
+        volumes:
+            - wp-mysql:/var/lib/mysql
+
+volumes: 
+    wp-www:
+    wp-mysql:

@@ -1,0 +1,16 @@
+version: "3.9"
+
+services: 
+    # NGINX & PHP Server
+    php-fpm:
+        build:
+            context: .
+        env_file: 
+            - ./.env-development
+        ports: 
+            - "8381:8080"
+        volumes: 
+            - wp-www:/var/www
+
+volumes: 
+    wp-www:
