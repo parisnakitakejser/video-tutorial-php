@@ -1,0 +1,33 @@
+{
+    "require": {
+        "johnpbloch/wordpress": ">=5.4",
+        "wpackagist-theme/twentynineteen": "*",
+        "wpackagist-theme/twentytwenty": "*",
+        "wpackagist-theme/twentytwentyone": "*",
+        "wpackagist-plugin/redis-cache": "^2.0"
+    },
+    "require-dev": {
+        "wpackagist-plugin/query-monitor": "^3.7"
+    },
+    "extra": {
+        "installer-paths": {
+            "frontend/wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "frontend/wp-content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        },
+        "wordpress-install-dir": "frontend/wp"
+    },
+    "repositories": [{
+        "type": "composer",
+        "url": "https://wpackagist.org"
+    }],
+    "scripts": {
+        "dropins": [
+            "echo Moving dropins to wp-content",
+            "cp vendor/wp/dropins/src/object-cache.php frontend/wp-content/object-cache.php"
+        ]
+    }
+}

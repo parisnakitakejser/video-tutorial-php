@@ -1,0 +1,29 @@
+name: Deploy Docker Images
+
+env:
+  docker_registry: your-registry
+  docker_repo: your-repo
+
+on:
+  push:
+    branches: ['main']
+  
+jobs:
+  docker_build_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build Docker image
+        id: docker_build
+        run: docker build -t ${{ env.docker_registry }}/${{ env.docker_repo }}:main .
+      
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push to DockerHub
+        run: docker push ${{ env.docker_registry }}/${{ env.docker_repo }}:main
